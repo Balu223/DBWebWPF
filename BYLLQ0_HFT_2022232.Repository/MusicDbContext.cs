@@ -145,13 +145,35 @@ namespace BYLLQ0_HFT_2022232.Repository
                 new Album("2#Scorpion#2018-06-29#2"),
                 new Album("3#DAMN.#2017-04-14#3"),
                 new Album("4#Detroit 2#2020-09-04#4"),
+                new Album("5#If You're Reading This Its Too Late#2015-02-13#2"),
             });
             modelBuilder.Entity<Song>().HasData(new Song[]
             {
                 new Song("1#The Story of O.J.#Hip-Hop#1#1"),
                 new Song("2#Nonstop#Hip-Hop#2#2"),
-                new Song("3#HUMBLE.#Hip-Hop#3#3"),
-                new Song("4#Deep Reverence#Hip-Hop#4#4"),
+                new Song("3#Can't Take A Joke#Hip-Hop#2#2"),
+                new Song("4#God's Plan#Hip-Hop#2#2"),
+                new Song("5#Mob Ties#Hip-Hop#2#2"),
+                new Song("6#Emotionless#Hip-Hop#2#2"),
+                new Song("7#Nice For What#Hip-Hop#2#2"),
+                new Song("8#Jaded#RnB#2#2"),
+                new Song("9#Summer Games#Rnb#2#2"),
+                new Song("10#Energy#Hip-Hop#5#1"),
+                new Song("11#Legend#Hip-Hop#5#1"),
+                new Song("12#Know Yourself#Hip-Hop#5#1"),
+                new Song("13#10 Bands#Hip-Hop#5#1"),
+                new Song("14#Madonna#Hip-Hop#5#1"),
+                new Song("15#6 God#Hip-Hop#5#1"),
+                new Song("16#Jungle#RnB#5#1"),
+                new Song("17#HUMBLE.#Hip-Hop#3#3"),
+                new Song("18#DNA.#Hip-Hop#3#3"),
+                new Song("19#LOVE.FEAT.ZACARI.#Hip-Hop#3#3"),
+                new Song("20#4:44#Hip-Hop#1#1"),
+                new Song("21#Bam#Hip-Hop#1#1"),
+                new Song("22#Deep Reverence#Hip-Hop#4#4"),
+                new Song("23#Wolves#Hip-Hop#4#4"),
+                new Song("24#ZTFO#Hip-Hop#4#4"),
+                new Song("25#Lithuania#Hip-Hop#4#4"),
             });
         }
 

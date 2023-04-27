@@ -11,8 +11,15 @@ namespace BYLLQ0_HFT_2022232.Client
 
             MusicDbContext ctx = new MusicDbContext();
 
-            foreach (var artist in ctx.Artists) {
-                Console.WriteLine(artist.RealName);
+            foreach (var album in ctx.Albums) {
+                var albumn = album;
+                foreach (var song in ctx.Songs)
+                {
+                    if (albumn.AlbumId == song.AlbumId)
+                    {
+                        Console.WriteLine(albumn.AlbumName + " " + song.SongName);
+                    }
+                }
             }
         }
     }
