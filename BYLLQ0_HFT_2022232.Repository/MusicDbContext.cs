@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using BYLLQ0_HFT_2022232.Models;
 
 #nullable disable
 
-namespace BYLLQ0_HFT_2022232.Models
+namespace BYLLQ0_HFT_2022232.Repository
 {
     public class MusicDbContext : DbContext
     {

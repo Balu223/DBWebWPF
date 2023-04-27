@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BYLLQ0_HFT_2022232.Models\BYLLQ0_HFT_2022232.Models.csproj" />
+    <ProjectReference Include="..\BYLLQ0_HFT_2022232.Repository\BYLLQ0_HFT_2022232.Repository.csproj" />
   </ItemGroup>
 
 </Project>
