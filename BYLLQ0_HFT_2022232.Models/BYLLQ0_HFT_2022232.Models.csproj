@@ -3,23 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Music.mdf" />
-    <None Remove="Music_log.ldf" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Music_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Music.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.14" />
