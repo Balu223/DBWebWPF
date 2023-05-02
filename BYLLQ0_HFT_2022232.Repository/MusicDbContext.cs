@@ -52,7 +52,8 @@ namespace BYLLQ0_HFT_2022232.Repository
                 entity.HasOne(d => d.Artist)
                     .WithMany(p => p.Albums)
                     .HasForeignKey(d => d.ArtistId)
-                    .HasConstraintName("FK__Albums__ArtistID__3B75D760");
+                    .HasConstraintName("FK__Albums__ArtistID__3B75D760")
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Artist>(entity =>
@@ -76,7 +77,8 @@ namespace BYLLQ0_HFT_2022232.Repository
                 entity.HasOne(d => d.Label)
                     .WithMany(p => p.Artists)
                     .HasForeignKey(d => d.LabelId)
-                    .HasConstraintName("FK__Artists__LabelID__38996AB5");
+                    .HasConstraintName("FK__Artists__LabelID__38996AB5")
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             //modelBuilder.Entity<Label>(entity =>
@@ -115,65 +117,67 @@ namespace BYLLQ0_HFT_2022232.Repository
                 entity.HasOne(d => d.Album)
                     .WithMany(p => p.Songs)
                     .HasForeignKey(d => d.AlbumId)
-                    .HasConstraintName("FK__Songs__AlbumID__3E52440B");
+                    .HasConstraintName("FK__Songs__AlbumID__3E52440B")
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.Artist)
                     .WithMany(p => p.Songs)
                     .HasForeignKey(d => d.ArtistId)
-                    .HasConstraintName("FK__Songs__ArtistID__3F466844");
+                    .HasConstraintName("FK__Songs__ArtistID__3F466844")
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             //OnModelCreatingPartial(modelBuilder);
 
             modelBuilder.Entity<Label>().HasData(new Label[]
             {
-                new Label("1#Def Jam Recordings#New York, NY"),
-                new Label("2#Interscope Records#Santa Monica, CA"),
-                new Label("3#Republic Records#New York, NY"),
-                new Label("4#Epic Records#New York, NY"),
+                new Label("4#Def Jam Recordings#New York, NY"),
+                new Label("1#Interscope Records#Santa Monica, CA"),
+                new Label("2#Republic Records#New York, NY"),
+                new Label("3#Epic Records#New York, NY"),
             });
             modelBuilder.Entity<Artist>().HasData(new Artist[]
             {
-                new Artist("1#Shawn Corey Carter#Jay-Z#1969-12-04#1"),
-                new Artist("2#Aubrey Drake Graham#Drake#1986-10-24#2"),
-                new Artist("3#Kendrick Lamar Duckworth#Kendrick Lamar#1987-06-17#2"),
-                new Artist("4#Sean Michael Leonard Anderson#Big Sean#1988-03-25#3"),
+                new Artist("4#Shawn Corey Carter#Jay-Z#1969-12-04#4"),
+                new Artist("1#Aubrey Drake Graham#Drake#1986-10-24#1"),
+                new Artist("2#Kendrick Lamar Duckworth#Kendrick Lamar#1987-06-17#1"),
+                new Artist("3#Sean Michael Leonard Anderson#Big Sean#1988-03-25#2"),
             });
             modelBuilder.Entity<Album>().HasData(new Album[]
             {
-                new Album("1#4:44#2017-06-30#1"),
-                new Album("2#Scorpion#2018-06-29#2"),
-                new Album("3#DAMN.#2017-04-14#3"),
-                new Album("4#Detroit 2#2020-09-04#4"),
-                new Album("5#If You're Reading This Its Too Late#2015-02-13#2"),
+                new Album("5#4:44#2017-06-30#4"),
+                new Album("1#Scorpion#2018-06-29#1"),
+                new Album("2#DAMN.#2017-04-14#2"),
+                new Album("3#Detroit 2#2020-09-04#3"),
+                new Album("4#If You're Reading This Its Too Late#2015-02-13#1"),
             });
             modelBuilder.Entity<Song>().HasData(new Song[]
             {
-                new Song("1#The Story of O.J.#Hip-Hop#1#1"),
-                new Song("2#Nonstop#Hip-Hop#2#2"),
-                new Song("3#Can't Take A Joke#Hip-Hop#2#2"),
-                new Song("4#God's Plan#Hip-Hop#2#2"),
-                new Song("5#Mob Ties#Hip-Hop#2#2"),
-                new Song("6#Emotionless#Hip-Hop#2#2"),
-                new Song("7#Nice For What#Hip-Hop#2#2"),
-                new Song("8#Jaded#RnB#2#2"),
-                new Song("9#Summer Games#Rnb#2#2"),
-                new Song("10#Energy#Hip-Hop#5#1"),
-                new Song("11#Legend#Hip-Hop#5#1"),
-                new Song("12#Know Yourself#Hip-Hop#5#1"),
-                new Song("13#10 Bands#Hip-Hop#5#1"),
-                new Song("14#Madonna#Hip-Hop#5#1"),
-                new Song("15#6 God#Hip-Hop#5#1"),
-                new Song("16#Jungle#RnB#5#1"),
-                new Song("17#HUMBLE.#Hip-Hop#3#3"),
-                new Song("18#DNA.#Hip-Hop#3#3"),
-                new Song("19#LOVE.FEAT.ZACARI.#Hip-Hop#3#3"),
-                new Song("20#4:44#Hip-Hop#1#1"),
-                new Song("21#Bam#Hip-Hop#1#1"),
-                new Song("22#Deep Reverence#Hip-Hop#4#4"),
-                new Song("23#Wolves#Hip-Hop#4#4"),
-                new Song("24#ZTFO#Hip-Hop#4#4"),
-                new Song("25#Lithuania#Hip-Hop#4#4"),
+                new Song("25#The Story of O.J.#Hip-Hop#5#4"),
+                new Song("1#Nonstop#Hip-Hop#1#1"),
+                new Song("2#Can't Take A Joke#Hip-Hop#1#1"),
+                new Song("3#God's Plan#Hip-Hop#1#1"),
+                new Song("4#Mob Ties#Hip-Hop#1#1"),
+                new Song("5#Emotionless#Hip-Hop#1#1"),
+                new Song("6#Nice For What#Hip-Hop#1#1"),
+                new Song("7#Jaded#RnB#1#1"),
+                new Song("8#Summer Games#Rnb#1#1"),
+                new Song("9#Energy#Hip-Hop#4#1"),
+                new Song("10#Legend#Hip-Hop#4#1"),
+                new Song("11#Know Yourself#Hip-Hop#4#1"),
+                new Song("12#10 Bands#Hip-Hop#4#1"),
+                new Song("13#Madonna#Hip-Hop#4#1"),
+                new Song("14#6 God#Hip-Hop#4#1"),
+                new Song("15#Jungle#RnB#4#1"),
+                new Song("16#HUMBLE.#Hip-Hop#2#2"),
+                new Song("17#DNA.#Hip-Hop#2#2"),
+                new Song("18#LOVE.FEAT.ZACARI.#Hip-Hop#2#2"),
+                new Song("19#4:44#Hip-Hop#5#4"),
+                new Song("20#Bam#Hip-Hop#5#4"),
+                new Song("21#Deep Reverence#Hip-Hop#3#3"),
+                new Song("22#Wolves#Hip-Hop#3#3"),
+                new Song("23#ZTFO#Hip-Hop#3#3"),
+                new Song("24#Lithuania#Hip-Hop#3#3"),
             });
         }
 
