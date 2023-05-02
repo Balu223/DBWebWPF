@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -8,5 +8,15 @@
     <ProjectReference Include="..\BYLLQ0_HFT_2022232.Models\BYLLQ0_HFT_2022232.Models.csproj" />
     <ProjectReference Include="..\BYLLQ0_HFT_2022232.Repository\BYLLQ0_HFT_2022232.Repository.csproj" />
   </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.14">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 </Project>

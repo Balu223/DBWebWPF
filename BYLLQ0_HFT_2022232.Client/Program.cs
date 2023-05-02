@@ -1,5 +1,7 @@
-﻿using BYLLQ0_HFT_2022232.Repository;
+﻿using BYLLQ0_HFT_2022232.Models;
+using BYLLQ0_HFT_2022232.Repository;
 using System;
+using System.Linq;
 
 namespace BYLLQ0_HFT_2022232.Client
 {
@@ -21,6 +23,21 @@ namespace BYLLQ0_HFT_2022232.Client
                     }
                 }
             }
+            //IRepository<Artist> repo = new ArtistRepository(new MusicDbContext());
+            //Artist a = new Artist()
+            //{
+            //    RealName = "Fasz",
+            //    StageName = "Kalap",
+            //    DateOfBirth = DateTime.Now,
+            //    LabelId = 1,
+            //};
+            //repo.Create(a);
+            //var another = repo.Read(2);
+            //another.RealName = "Kutya";
+            //repo.Update(another);
+            //var items = repo.ReadAll().ToArray();
+            //;
+
         }
     }
 }

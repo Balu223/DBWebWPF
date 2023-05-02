@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "BYLLQ0_HFT_2022232.Client": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57840;http://localhost:57841"
+    }
+  }
+}
