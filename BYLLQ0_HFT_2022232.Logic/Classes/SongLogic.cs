@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BYLLQ0_HFT_2022232.Logic
 {
-    public class SongLogic
+    public class SongLogic : ISongLogic
     {
         IRepository<Song> repo;
 
@@ -75,26 +75,7 @@ namespace BYLLQ0_HFT_2022232.Logic
             return mostSongs;
 
         }
+       
 
-        public List<Artist> GetArtistsWithMostSongs(int n)
-        {
-            var songs = from song in this.repo.ReadAll()
-                                  group song by song.Artist into g
-                                  select new
-                                  {
-                                      Artist = g.Key,
-                                      SongCount = g.Count()
-                                  };
-
-            var sortedSongs = songs.OrderByDescending(x => x.SongCount).Take(n);
-
-            List<Artist> artists = new List<Artist>();
-            foreach (var item in sortedSongs)
-            {
-                artists.Add(item.Artist);
-            }
-
-            return artists;
-        }
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BYLLQ0_HFT_2022232.Logic
 {
-    public class ArtistLogic
+    public class ArtistLogic : IArtistLogic
     {
         IRepository<Artist> repo;
 
@@ -72,21 +72,20 @@ namespace BYLLQ0_HFT_2022232.Logic
                     .SelectMany(al => al.Songs)
                     .ToList();
 
-                return songs;
-            
+            return songs;
+
         }
 
         public List<Artist> GetArtistsByGenre(string genre)
         {
 
-                var artistsByGenre = this.repo.ReadAll()
-                    .Where(a => a.Songs.Any(al => al.Genre == genre))
-                    .ToList();
+            var artistsByGenre = this.repo.ReadAll()
+                .Where(a => a.Songs.Any(s => s.Genre == genre))
+                .ToList();
 
-                return artistsByGenre; 
+            return artistsByGenre;
         }
 
-
-
+        //szar
     }
 }

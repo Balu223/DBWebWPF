@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BYLLQ0_HFT_2022232.Logic
 {
-    public class AlbumLogic
+    public class AlbumLogic : IAlbumLogic
     {
 
         IRepository<Album> repo;
@@ -52,17 +52,17 @@ namespace BYLLQ0_HFT_2022232.Logic
         public List<(Album, int)> GetAlbumsWithMostSongs()
         {
 
-                var albums = this.repo.ReadAll()
-                    .Select(a => new
-                    {
-                        Album = a,
-                        SongCount = a.Songs.Count()
-                    })
-                    .OrderByDescending(a => a.SongCount)
-                    .ToList();
+            var albums = this.repo.ReadAll()
+                .Select(a => new
+                {
+                    Album = a,
+                    SongCount = a.Songs.Count()
+                })
+                .OrderByDescending(a => a.SongCount)
+                .ToList();
 
-                return albums.Select(a => (a.Album, a.SongCount)).ToList();
-            
+            return albums.Select(a => (a.Album, a.SongCount)).ToList();
+
         }
 
     }
