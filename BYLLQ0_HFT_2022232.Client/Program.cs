@@ -37,6 +37,7 @@ namespace BYLLQ0_HFT_2022232.Client
                 .Add("Create", () => Create("Label"))
                 .Add("Delete", () => Delete("Label"))
                 .Add("Update", () => Update("Label"))
+                .Add("GetLabelsWithMostAlbums", () => GetLabelsWithMostAlbums())
                 .Add("Exit", ConsoleMenu.Close);
 
             var artistSubMenu = new ConsoleMenu(args, level: 1)
@@ -50,7 +51,7 @@ namespace BYLLQ0_HFT_2022232.Client
                 .Add("List", () => List("Album"))
                 .Add("Create", () => Create("Album"))
                 .Add("Delete", () => Delete("Album"))
-                .Add("Update", () => Update("Album"))
+                .Add("Update", () => Update("Album"))   
                 .Add("Exit", ConsoleMenu.Close);
 
             var songSubMenu = new ConsoleMenu(args, level: 1)
@@ -60,14 +61,24 @@ namespace BYLLQ0_HFT_2022232.Client
                 .Add("Update", () => Update("Song"))
                 .Add("Exit", ConsoleMenu.Close);
 
+            var nonCrudSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("GetArtistWithMostSongsAtLabel", () => GetArtistWithMostSongsAtLabel())
+                .Add("GetAlbumsWithMostSongs", () => GetAlbumsWithMostSongs())
+                .Add("GetArtistsByGenre", () => GetArtistsByGenre())
+                .Add("GetSongsByLabel", () => GetSongsByLabel())
+                .Add("GetLabelsWithMostAlbums", () => GetLabelsWithMostAlbums())
+                .Add("Exit", ConsoleMenu.Close);
+
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Labels", () => labelSubMenu.Show())
                 .Add("Artists", () => artistSubMenu.Show())
                 .Add("Albums", () => albumSubMenu.Show())
                 .Add("Songs", () => songSubMenu.Show())
+                .Add("Non-CRUD methods", () => nonCrudSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();
+
         }
 
 
@@ -256,6 +267,66 @@ namespace BYLLQ0_HFT_2022232.Client
                 {
                     Console.WriteLine(item.SongId + "\t" + item.SongName + "\t" + item.Album.AlbumName + " - " + item.Genre);
                 }
+            }
+            Console.ReadLine();
+        }
+        
+        private static void GetLabelsWithMostAlbums()
+        {
+            var items = labellogic.GetLabelsWithMostAlbums();
+            foreach (var item in items) 
+            {
+                Console.WriteLine(item.Item1.LabelName + ", " + item.Item2);
+            }
+
+            Console.ReadLine();
+        }
+
+        private static void GetArtistsByGenre()
+        {
+            Console.Write("Genre name: ");
+            string name = Console.ReadLine();
+            var artists = artistlogic.GetArtistsByGenre(name);
+            Console.WriteLine("Artists that make " + name + " music:");
+            foreach (var artist in artists)
+            {
+                Console.WriteLine(artist.StageName);
+            }
+            Console.ReadLine() ;
+        }
+
+        private static void GetSongsByLabel()
+        {
+            Console.WriteLine("Label id: ");
+            int ans = int.Parse(Console.ReadLine());
+            var items = artistlogic.GetSongsByLabel(ans);
+            string Labelname = labellogic.Read(ans).LabelName;
+            Console.WriteLine("Songs by " + Labelname + ": ");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.SongName);
+            }
+            Console.ReadLine();
+        }
+
+        private static void GetAlbumsWithMostSongs()
+        {
+            var items = albumlogic.GetAlbumsWithMostSongs();
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.Item1.AlbumName + ", " + item.Item2);
+            }
+            Console.ReadLine();
+        }
+
+        private static void GetArtistWithMostSongsAtLabel()
+        {
+            Console.WriteLine("Label id: ");
+            int id = int.Parse(Console.ReadLine());
+            var items = artistlogic.GetArtistWithMostSongsAtLabel(id);
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.Item1.StageName + ", " + item.Item2);
             }
             Console.ReadLine();
         }
