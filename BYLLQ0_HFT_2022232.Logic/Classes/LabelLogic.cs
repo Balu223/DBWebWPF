@@ -59,7 +59,8 @@ namespace BYLLQ0_HFT_2022232.Logic
         //labelenként összzene
         //átlag zeneszám artistonként
 
-        public List<(Label, int)> GetLabelsWithMostAlbums()
+
+        public IEnumerable<(Label, int)> GetLabelsWithMostAlbums()
         {
             var labelsWithAlbumCount = this.repo.ReadAll()
                     .Select(l => new
@@ -72,7 +73,7 @@ namespace BYLLQ0_HFT_2022232.Logic
                     .ToList();
 
                 return labelsWithAlbumCount.Select(l => (l.Label, l.AlbumCount)).ToList();
-           
+            ;
         }
     }
 }

@@ -8,8 +8,6 @@ namespace BYLLQ0_HFT_2022232.Logic
     {
         void Create(Song item);
         void Delete(int id);
-
-        string GetArtistWithMostSongsAtLabel(int labelId);
         Song Read(int id);
         IQueryable<Song> ReadAll();
         void Update(Song item);

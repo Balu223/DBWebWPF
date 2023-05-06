@@ -19,7 +19,16 @@ namespace BYLLQ0_HFT_2022232.Logic
 
         public void Create(Song item)
         {
+            if (item.ArtistId == null)
+            {
+                throw new ArgumentException("Song has no artist");
+            }
+            if (item.SongName == "")
+            {
+                throw new ArgumentException("Song name too short");
+            }
             this.repo.Create(item);
+
         }
 
         public void Delete(int id)
@@ -32,7 +41,7 @@ namespace BYLLQ0_HFT_2022232.Logic
             var song = this.repo.Read(id);
             if (song == null)
             {
-                throw new ArgumentException("Song doesnt exist.");
+                throw new ArgumentException("Song doesnt exist");
             }
             return this.repo.Read(id);
         }
@@ -58,23 +67,7 @@ namespace BYLLQ0_HFT_2022232.Logic
 
         //}
         // Artist with the most songs at the label
-        public string GetArtistWithMostSongsAtLabel(int labelId)
-        {
-            var artistSongs = this.repo.ReadAll()
-                .Where(s => s.Artist.LabelId == labelId)
-                .GroupBy(m => m.Album.Artist)
-                .Select(g => new
-                {
-                    Artist = g.Key,
-                    SongCount = g.Count()
-                });
-            var mostSongs = artistSongs
-                .OrderByDescending(a => a.SongCount)
-                .FirstOrDefault().Artist.StageName;
-
-            return mostSongs;
-
-        }
+       
        
 
     }

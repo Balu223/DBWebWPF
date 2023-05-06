@@ -1,6 +1,7 @@
 ﻿using BYLLQ0_HFT_2022232.Models;
 using BYLLQ0_HFT_2022232.Repository;
 using Microsoft.EntityFrameworkCore;
+using NUnit.Framework.Internal.Execution;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,15 @@ namespace BYLLQ0_HFT_2022232.Logic
 
         public void Create(Album item)
         {
+            if (item.ArtistId < 0)
+            {
+                ;
+                throw new ArgumentException("Artist id not valid");
+            }
+            if (item.AlbumName == "")
+            {
+                throw new ArgumentException("Album name too short");
+            }
             this.repo.Create(item);
         }
 
@@ -49,7 +59,7 @@ namespace BYLLQ0_HFT_2022232.Logic
             this.repo.Update(item);
         }
 
-        public List<(Album, int)> GetAlbumsWithMostSongs()
+        public IEnumerable<(Album, int)> GetAlbumsWithMostSongs()
         {
 
             var albums = this.repo.ReadAll()

@@ -76,7 +76,7 @@ namespace BYLLQ0_HFT_2022232.Logic
 
         }
 
-        public List<Artist> GetArtistsByGenre(string genre)
+        public IEnumerable<Artist> GetArtistsByGenre(string genre)
         {
 
             var artistsByGenre = this.repo.ReadAll()
@@ -86,6 +86,21 @@ namespace BYLLQ0_HFT_2022232.Logic
             return artistsByGenre;
         }
 
-        //szar
+        public IEnumerable<(Artist, int)> GetArtistWithMostSongsAtLabel(int labelId)
+        {
+            var artistSongs = this.repo.ReadAll()
+                                .Where(s => s.LabelId == labelId)
+                .Select(g => new
+                {
+                    Artist = g,
+                    SongCount = g.Songs.Count()
+                })
+                .OrderByDescending(a => a.SongCount)
+                .Take(1)
+                .ToList();
+
+            return artistSongs.Select(a => (a.Artist, a.SongCount)).ToList();
+
+        }
     }
 }

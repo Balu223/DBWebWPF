@@ -8,7 +8,7 @@ namespace BYLLQ0_HFT_2022232.Logic
     {
         void Create(Album item);
         void Delete(int id);
-        List<(Album, int)> GetAlbumsWithMostSongs();
+        IEnumerable<(Album, int)> GetAlbumsWithMostSongs();
         Album Read(int id);
         IQueryable<Album> ReadAll();
         void Update(Album item);
