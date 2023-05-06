@@ -32,5 +32,26 @@ namespace BYLLQ0_HFT_2022232.Models
             AlbumId = int.Parse(d[3]);
             ArtistId = int.Parse(d[4]);
         }
+        public override bool Equals(object obj)
+        {
+            Song s = obj as Song;
+            if (s == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.SongId == s.SongId
+                    && this.SongName == s.SongName
+                    && this.Genre == s.Genre
+                    && this.AlbumId == s.AlbumId
+                    && this.ArtistId == s.ArtistId;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.SongId, this.SongName, this.Genre, this.AlbumId, this.ArtistId);
+        }
     }
 }

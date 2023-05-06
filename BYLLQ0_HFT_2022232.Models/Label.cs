@@ -29,5 +29,25 @@ namespace BYLLQ0_HFT_2022232.Models
             Address = d[2];
             Artists = new HashSet<Artist>();
         }
+
+        public override bool Equals(object obj)
+        {
+            Label l = obj as Label;
+            if (l == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.LabelId == l.LabelId
+                    && this.LabelName == l.LabelName
+                    && this.Address == l.Address;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.LabelId, this.LabelName, this.Address);
+        }
     }
 }

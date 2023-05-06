@@ -37,5 +37,26 @@ namespace BYLLQ0_HFT_2022232.Models
             Albums = new HashSet<Album>();
             Songs = new HashSet<Song>();
         }
+        public override bool Equals(object obj)
+        {
+            Artist a = obj as Artist;
+            if (a == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.ArtistId == a.ArtistId
+                    && this.RealName == a.RealName
+                    && this.StageName == a.StageName
+                    && this.DateOfBirth == a.DateOfBirth
+                    && this.LabelId == a.LabelId;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.ArtistId, this.RealName, this.StageName, this.DateOfBirth, this.LabelId);
+        }
     }
 }
