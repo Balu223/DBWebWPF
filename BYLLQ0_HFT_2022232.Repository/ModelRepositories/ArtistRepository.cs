@@ -23,7 +23,10 @@ namespace BYLLQ0_HFT_2022232.Repository
             var old = Read(item.ArtistId);
             foreach (var property in old.GetType().GetProperties())
             {
-                property.SetValue(old, property.GetValue(item));
+                if (property.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                {
+                    property.SetValue(old, property.GetValue(item));
+                }
             }
             ctx.SaveChanges();
         }
