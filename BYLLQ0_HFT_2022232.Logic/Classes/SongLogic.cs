@@ -55,20 +55,5 @@ namespace BYLLQ0_HFT_2022232.Logic
         {
             this.repo.Update(item);
         }
-
-        // RnB Songs Count from Artist
-        //public int GetArtistRnBSongCount(int ArtistId)
-        //{
-        //    var rnbSongCount = this.repo.ReadAll()
-        //            .Where(s => s.Artist.ArtistId == ArtistId && s.Genre == "RnB")
-        //            .Count();
-
-        //    return rnbSongCount;
-
-        //}
-        // Artist with the most songs at the label
-       
-       
-
     }
 }

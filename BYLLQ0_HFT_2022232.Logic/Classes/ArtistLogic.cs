@@ -54,16 +54,6 @@ namespace BYLLQ0_HFT_2022232.Logic
             this.repo.Update(item);
         }
 
-        // 5 non crud method
-        //Albumonként össz-zene
-
-        //azok közül akik az interscopenál vannak kinek van több száma
-        //labelenként összzene
-        //össz zeneszám artistonként
-
-
-
-        //Songs by Label
         public IEnumerable<Song> GetSongsByLabel(int labelId)
         {
             var songs = this.repo.ReadAll()
@@ -86,11 +76,12 @@ namespace BYLLQ0_HFT_2022232.Logic
             return artistsByGenre;
         }
 
-        public IEnumerable<(Artist, int)> GetArtistWithMostSongsAtLabel(int labelId)
+        public IEnumerable<NonCrud.ArtistInfo> GetArtistWithMostSongsAtLabel(int labelId)
         {
-            var artistSongs = this.repo.ReadAll()
-                                .Where(s => s.LabelId == labelId)
-                .Select(g => new
+            var artistSongs = this.repo.ReadAll();
+            return artistSongs
+                .Where(s => s.LabelId == labelId)
+                .Select(g => new NonCrud.ArtistInfo
                 {
                     Artist = g,
                     SongCount = g.Songs.Count()
@@ -98,9 +89,6 @@ namespace BYLLQ0_HFT_2022232.Logic
                 .OrderByDescending(a => a.SongCount)
                 .Take(1)
                 .ToList();
-
-            return artistSongs.Select(a => (a.Artist, a.SongCount)).ToList();
-
-        }
+        }   
     }
 }

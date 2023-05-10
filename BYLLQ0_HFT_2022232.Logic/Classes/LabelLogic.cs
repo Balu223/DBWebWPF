@@ -50,30 +50,17 @@ namespace BYLLQ0_HFT_2022232.Logic
             this.repo.Update(item);
         }
 
-        // 5 non crud method
-        //Albumonként össz-zene
-
-
-        //artistonként hány százaléka a zenéinek hip-hop?
-        //azok közül akik az interscopenál vannak kinek van több albuma
-        //labelenként összzene
-        //átlag zeneszám artistonként
-
-
-        public IEnumerable<(Label, int)> GetLabelsWithMostAlbums()
+        public IEnumerable<NonCrud.LabelInfo> GetLabelsWithMostAlbums()
         {
-            var labelsWithAlbumCount = this.repo.ReadAll()
-                    .Select(l => new
+            var labelsWithAlbumCount = this.repo.ReadAll();
+            return  labelsWithAlbumCount
+                    .Select(l => new NonCrud.LabelInfo
                     {
                         Label = l,
                         AlbumCount = l.Artists.SelectMany(a => a.Albums).Count()
                     })
                     .OrderByDescending(l => l.AlbumCount)
-                    .Take(10)
                     .ToList();
-
-                return labelsWithAlbumCount.Select(l => (l.Label, l.AlbumCount)).ToList();
-            ;
         }
     }
 }

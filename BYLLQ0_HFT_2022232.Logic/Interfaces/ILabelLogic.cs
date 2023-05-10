@@ -11,6 +11,6 @@ namespace BYLLQ0_HFT_2022232.Logic
         Label Read(int id);
         IQueryable<Label> ReadAll();
         void Update(Label item);
-        IEnumerable<(Label, int)> GetLabelsWithMostAlbums();
+        IEnumerable<NonCrud.LabelInfo> GetLabelsWithMostAlbums();
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BYLLQ0_HFT_2022232.Logic.ArtistLogic;
 
 namespace BYLLQ0_HFT_2022232.Logic
 {
@@ -59,21 +60,19 @@ namespace BYLLQ0_HFT_2022232.Logic
             this.repo.Update(item);
         }
 
-        public IEnumerable<(Album, int)> GetAlbumsWithMostSongs()
+        public IEnumerable<NonCrud.AlbumInfo> GetAlbumsWithMostSongs()
         {
 
-            var albums = this.repo.ReadAll()
-                .Select(a => new
+            var albums = this.repo.ReadAll();
+            return albums
+               
+                .Select(a => new NonCrud.AlbumInfo
                 {
                     Album = a,
                     SongCount = a.Songs.Count()
                 })
                 .OrderByDescending(a => a.SongCount)
                 .ToList();
-
-            return albums.Select(a => (a.Album, a.SongCount)).ToList();
-
-        }
-
+        }    
     }
 }
