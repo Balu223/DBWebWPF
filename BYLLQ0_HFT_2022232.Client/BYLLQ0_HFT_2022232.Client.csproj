@@ -12,12 +12,15 @@
     <PackageReference Include="Moq" Version="4.17.1" />
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+	  <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BYLLQ0_HFT_2022232.Logic\BYLLQ0_HFT_2022232.Logic.csproj" />
     <ProjectReference Include="..\BYLLQ0_HFT_2022232.Models\BYLLQ0_HFT_2022232.Models.csproj" />
-    <ProjectReference Include="..\BYLLQ0_HFT_2022232.Repository\BYLLQ0_HFT_2022232.Repository.csproj" />
   </ItemGroup>
 
 </Project>
