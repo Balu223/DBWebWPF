@@ -12,7 +12,7 @@ using System.Linq;
 namespace BYLLQ0_HFT_2022232.Test
 {
     [TestFixture]
-    public class LabelLogicTester
+    public class MusicLogicTester
     {
         LabelLogic labellogic;
         Mock<IRepository<Label>> mockLabelRepo;
@@ -28,29 +28,32 @@ namespace BYLLQ0_HFT_2022232.Test
         {
             List<Label> mockRepoDataLabel = new List<Label>()
             {
-                new Label("4#Def Jam Recordings#New York, NY"),
+                
                 new Label("1#Interscope Records#Santa Monica, CA"),
                 new Label("2#Republic Records#New York, NY"),
                 new Label("3#Epic Records#New York, NY"),
+                new Label("4#Def Jam Recordings#New York, NY"),
             };
             List<Artist> mockRepoDataArtist = new List<Artist>()
             {
-                new Artist("4#Shawn Corey Carter#Jay-Z#1969-12-04#4"),
+                
                 new Artist("1#Aubrey Drake Graham#Drake#1986-10-24#1"),
                 new Artist("2#Kendrick Lamar Duckworth#Kendrick Lamar#1987-06-17#1"),
                 new Artist("3#Sean Michael Leonard Anderson#Big Sean#1988-03-25#2"),
+                new Artist("4#Shawn Corey Carter#Jay-Z#1969-12-04#4"),
             };
             List<Album> mockRepoDataAlbum = new List<Album>()
             {
-                new Album("5#4:44#2017-06-30#4"),
+               
                 new Album("1#Scorpion#2018-06-29#1"),
                 new Album("2#DAMN.#2017-04-14#2"),
                 new Album("3#Detroit 2#2020-09-04#3"),
                 new Album("4#If You're Reading This Its Too Late#2015-02-13#1"),
+                new Album("5#4:44#2017-06-30#4"),
             };
             List<Song> mockRepoDataSong = new List<Song>()
             {
-                new Song("25#The Story of O.J.#Hip-Hop#5#4"),
+
                 new Song("1#Nonstop#Hip-Hop#1#1"),
                 new Song("2#Can't Take A Joke#Hip-Hop#1#1"),
                 new Song("3#God's Plan#Hip-Hop#1#1"),
@@ -75,6 +78,7 @@ namespace BYLLQ0_HFT_2022232.Test
                 new Song("22#Wolves#Hip-Hop#3#3"),
                 new Song("23#ZTFO#Hip-Hop#3#3"),
                 new Song("24#Lithuania#Hip-Hop#3#3"),
+                new Song("25#The Story of O.J.#Hip-Hop#5#4"),
             };
             //label virtual props
             foreach (var label in mockRepoDataLabel)
@@ -181,12 +185,28 @@ namespace BYLLQ0_HFT_2022232.Test
         {
             var actual = labellogic.GetLabelsWithMostAlbums();
             ;
-            var expected = new List<(Label, int)>()
+            var expected = new List<NonCrud.LabelInfo>()
             {
-                (new Label("1#Interscope Records#Santa Monica, CA"),3),
-                (new Label("4#Def Jam Recordings#New York, NY"),1),
-                (new Label("2#Republic Records#New York, NY"),1),
-                (new Label("3#Epic Records#New York, NY"),0)
+                (new NonCrud.LabelInfo
+                {
+                    Label = new Label("1#Interscope Records#Santa Monica, CA"),
+                    AlbumCount = 3
+                }),
+                (new NonCrud.LabelInfo
+                {
+                    Label = new Label("2#Republic Records#New York, NY"),
+                    AlbumCount = 1
+                }),
+                (new NonCrud.LabelInfo
+                {
+                    Label = new Label("4#Def Jam Recordings#New York, NY"),
+                    AlbumCount = 1
+                }),
+                (new NonCrud.LabelInfo
+                {
+                    Label = new Label("3#Epic Records#New York, NY"),
+                    AlbumCount = 0
+                })
             };
 
             Assert.AreEqual(expected, actual);
@@ -197,9 +217,11 @@ namespace BYLLQ0_HFT_2022232.Test
         public void GetArtistWithMostSongsAtLabelTest()
         {
             var actual = artistlogic.GetArtistWithMostSongsAtLabel(1);
-            var expected = new List<(Artist, int)>()
+            var expected = new List<NonCrud.ArtistInfo>()
             {
-                (new Artist("1#Aubrey Drake Graham#Drake#1986-10-24#1"),15)
+                (new NonCrud.ArtistInfo{
+                    Artist = new Artist("1#Aubrey Drake Graham#Drake#1986-10-24#1"),
+                    SongCount = 15 }),
             };
             Assert.AreEqual(expected, actual);
         }
@@ -208,13 +230,24 @@ namespace BYLLQ0_HFT_2022232.Test
         public void GetAlbumsWithMostSongsTest()
         {
             var actual = albumlogic.GetAlbumsWithMostSongs();
-            var expected = new List<(Album, int)>()
+            var expected = new List<NonCrud.AlbumInfo>()
             {
-                ( new Album("1#Scorpion#2018-06-29#1"),8),
-                (new Album("4#If You're Reading This Its Too Late#2015-02-13#1"),7),
-                (new Album("3#Detroit 2#2020-09-04#3"),4),
-                (new Album("5#4:44#2017-06-30#4"),3),
-                (new Album("2#DAMN.#2017-04-14#2"),3)
+                (new NonCrud.AlbumInfo{
+                    Album = new Album("1#Scorpion#2018-06-29#1"),
+                    SongCount = 8}),
+                (new NonCrud.AlbumInfo{
+                    Album = new Album("4#If You're Reading This Its Too Late#2015-02-13#1"),
+                    SongCount = 7}),
+                (new NonCrud.AlbumInfo{
+                    Album = new Album("3#Detroit 2#2020-09-04#3"),
+                    SongCount = 4}),
+                (new NonCrud.AlbumInfo{
+                    Album = new Album("2#DAMN.#2017-04-14#2"),
+                    SongCount = 3}),
+                (new NonCrud.AlbumInfo{
+                    Album = new Album("5#4:44#2017-06-30#4"),
+                    SongCount = 3}),
+             
             };
             Assert.AreEqual(expected, actual);
         }
