@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 #nullable disable
 
@@ -23,7 +24,9 @@ namespace BYLLQ0_HFT_2022232.Models
         public int? LabelId { get; set; }
 
         public virtual Label Label { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Album> Albums { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Song> Songs { get; set; }
 
         public Artist(string data)
