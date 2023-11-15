@@ -22,6 +22,8 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
+            <Label Content="Name" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedArtist.StageName}" Padding="10" Margin="0,0,0,30"/>
             <Button Content="Create Actor" Command="{Binding CreateArtistCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete Actor" Command="{Binding DeleteArtistCommand}" Margin="10" Padding="10"/>
             <Button Content="Update Actor" Command="{Binding UpdateArtistCommand}" Margin="10" Padding="10"/>

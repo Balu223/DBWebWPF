@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Diagnostics;
 using Castle.Core.Configuration;
+using BYLLQ0_HFT_2022232.Endpoint.Services;
 
 namespace BYLLQ0_HFT_2022232.Endpoint
 {
@@ -32,6 +33,9 @@ namespace BYLLQ0_HFT_2022232.Endpoint
             services.AddTransient<IArtistLogic, ArtistLogic>();
             services.AddTransient<IAlbumLogic, AlbumLogic>();
             services.AddTransient<ISongLogic, SongLogic>();
+
+            services.AddSignalR();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -59,6 +63,8 @@ namespace BYLLQ0_HFT_2022232.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

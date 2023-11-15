@@ -1,8 +1,11 @@
-﻿using BYLLQ0_HFT_2022232.Logic;
+﻿using BYLLQ0_HFT_2022232.Endpoint.Services;
+using BYLLQ0_HFT_2022232.Logic;
 using BYLLQ0_HFT_2022232.Models;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,10 +17,12 @@ namespace BYLLQ0_HFT_2022232.Endpoint.Controllers
     {
 
         IAlbumLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public AlbumController(IAlbumLogic logic)
+        public AlbumController(IAlbumLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
 
@@ -39,6 +44,7 @@ namespace BYLLQ0_HFT_2022232.Endpoint.Controllers
         public void Create([FromBody] Album value)
         {
             this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("AlbumCreated", value);
         }
 
 
@@ -46,13 +52,16 @@ namespace BYLLQ0_HFT_2022232.Endpoint.Controllers
         public void Update([FromBody] Album value)
         {
             this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("AlbumUpdated", value);
         }
 
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var albumToDelete = this.logic.Read(id);
             this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("AlbumDeleted", albumToDelete);
         }
 
         [HttpGet("AlbumsWithMostSongs")]

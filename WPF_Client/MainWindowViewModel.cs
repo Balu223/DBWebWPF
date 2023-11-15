@@ -1,11 +1,14 @@
 ﻿using BYLLQ0_HFT_2022232.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace WPF_Client
@@ -21,8 +24,20 @@ namespace WPF_Client
             get { return selectedArtist; }
             set
             {
-                SetProperty(ref selectedArtist, value);
-                (DeleteArtistCommand as RelayCommand).NotifyCanExecuteChanged();
+                if (value != null)
+                {
+                    selectedArtist = new Artist()
+                    { 
+                        ArtistId = value.ArtistId, 
+                        DateOfBirth = value.DateOfBirth,
+                        RealName = value.RealName,
+                        StageName = value.StageName,
+                        LabelId = value.LabelId
+                    };
+                    OnPropertyChanged();
+                    (DeleteArtistCommand as RelayCommand).NotifyCanExecuteChanged();
+                }
+
             }
 
 
@@ -33,26 +48,51 @@ namespace WPF_Client
         public ICommand DeleteArtistCommand { get; set; }
         public ICommand UpdateArtistCommand { get; set; }
 
+        public static bool IsInDesignMode
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
+        }
+
         public MainWindowViewModel()
         {
-            Artists = new RestCollection<Artist>("http://localhost:5124/", "artist");
-            CreateArtistCommand = new RelayCommand(() =>
+
+            if (!IsInDesignMode)
             {
-                Artists.Add(new Artist()
+
+                Artists = new RestCollection<Artist>("http://localhost:5124/", "artist", "hub");
+                CreateArtistCommand = new RelayCommand(() =>
                 {
-                    StageName = "Lil Kubik A Creeper",
-                    RealName = "Kubik Marcell"
+                    Artists.Add(new Artist()
+                    {
+                        StageName = SelectedArtist.StageName,
+                        RealName = SelectedArtist.StageName
+                    });
                 });
-            });
-            DeleteArtistCommand = new RelayCommand(() =>
-            {
-                Artists.Delete(SelectedArtist.ArtistId);
-                
-            },
-            () =>
-            {
-                return SelectedArtist != null;
-            });
+
+                UpdateArtistCommand = new RelayCommand(() =>
+                {
+                    Artists.Update(SelectedArtist);
+                });
+
+                DeleteArtistCommand = new RelayCommand(() =>
+                {
+                    Artists.Delete(SelectedArtist.ArtistId);
+
+                },
+                () =>
+                {
+                    return SelectedArtist != null;
+                });
+                SelectedArtist = new Artist()
+                {
+                    RealName = "",
+                    StageName = ""
+                };
+            }
         }
     }
 }
