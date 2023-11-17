@@ -1,98 +1,49 @@
-﻿using BYLLQ0_HFT_2022232.Models;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace WPF_Client
 {
     public class MainWindowViewModel : ObservableRecipient
     {
-
-        public RestCollection<Artist> Artists { get; set; }
-        private Artist selectedArtist;
-
-        public Artist SelectedArtist
-        {
-            get { return selectedArtist; }
-            set
-            {
-                if (value != null)
-                {
-                    selectedArtist = new Artist()
-                    { 
-                        ArtistId = value.ArtistId, 
-                        DateOfBirth = value.DateOfBirth,
-                        RealName = value.RealName,
-                        StageName = value.StageName,
-                        LabelId = value.LabelId
-                    };
-                    OnPropertyChanged();
-                    (DeleteArtistCommand as RelayCommand).NotifyCanExecuteChanged();
-                }
-
-            }
-
-
-        }
-
-
-        public ICommand CreateArtistCommand { get; set; }
-        public ICommand DeleteArtistCommand { get; set; }
-        public ICommand UpdateArtistCommand { get; set; }
-
-        public static bool IsInDesignMode
-        {
-            get
-            {
-                var prop = DesignerProperties.IsInDesignModeProperty;
-                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
-            }
-        }
+        public ICommand OpenArtistsWindowCommand { get; set; }
+        public ICommand OpenAlbumsWindowCommand { get; set; }
+        public ICommand OpenLabelsWindowCommand { get; set; }
+        public ICommand OpenSongsWindowCommand { get; set; }
+        public ICommand OpenNCWindowCommand { get; set; }
 
         public MainWindowViewModel()
         {
-
-            if (!IsInDesignMode)
+            OpenArtistsWindowCommand = new RelayCommand(() =>
             {
-
-                Artists = new RestCollection<Artist>("http://localhost:5124/", "artist", "hub");
-                CreateArtistCommand = new RelayCommand(() =>
-                {
-                    Artists.Add(new Artist()
-                    {
-                        StageName = SelectedArtist.StageName,
-                        RealName = SelectedArtist.StageName
-                    });
-                });
-
-                UpdateArtistCommand = new RelayCommand(() =>
-                {
-                    Artists.Update(SelectedArtist);
-                });
-
-                DeleteArtistCommand = new RelayCommand(() =>
-                {
-                    Artists.Delete(SelectedArtist.ArtistId);
-
-                },
-                () =>
-                {
-                    return SelectedArtist != null;
-                });
-                SelectedArtist = new Artist()
-                {
-                    RealName = "",
-                    StageName = ""
-                };
-            }
+                ArtistWindow artistWindow = new ArtistWindow();
+                artistWindow.Show();
+            });
+            OpenAlbumsWindowCommand = new RelayCommand(() =>
+            {
+                AlbumWindow albumWindow = new AlbumWindow();
+                albumWindow.Show();
+            });
+            OpenLabelsWindowCommand = new RelayCommand(() =>
+            {
+                LabelWindow labelWindow = new LabelWindow();
+                labelWindow.Show();
+            });
+            OpenSongsWindowCommand = new RelayCommand(() =>
+            {
+                SongWindow songWindow = new SongWindow();
+                songWindow.Show();
+            });
+            OpenNCWindowCommand = new RelayCommand(() =>
+            {
+                NCWindow ncWindow = new NCWindow();
+                ncWindow.Show();
+            });
         }
     }
 }
