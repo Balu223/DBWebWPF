@@ -11,6 +11,7 @@ namespace WPF_Client
 {
     public class MainWindowViewModel : ObservableRecipient
     {
+        static public RestService rest;
         public ICommand OpenArtistsWindowCommand { get; set; }
         public ICommand OpenAlbumsWindowCommand { get; set; }
         public ICommand OpenLabelsWindowCommand { get; set; }
@@ -19,6 +20,7 @@ namespace WPF_Client
 
         public MainWindowViewModel()
         {
+            rest = new RestService("http://localhost:5124/", "swagger");
             OpenArtistsWindowCommand = new RelayCommand(() =>
             {
                 ArtistWindow artistWindow = new ArtistWindow();

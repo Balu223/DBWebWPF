@@ -4,12 +4,219 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Client"
+        xmlns:models="clr-namespace:BYLLQ0_HFT_2022232.Models;assembly=BYLLQ0_HFT_2022232.Models"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:sys1="clr-namespace:System.Diagnostics;assembly=System" xmlns:sys2="clr-namespace:System.Diagnostics;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="Custom Methods" Height="450" Width="800">
     <Window.DataContext>
         <local:NCWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <DataTemplate x:Key="ArtistWithMostSongsTemplate">
+            <Border BorderThickness="2" BorderBrush="Black">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Label Content="{Binding Artist.StageName}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Background="#C9D2C6" />
+                    <Label Content="{Binding SongCount}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Background="#C9D2C6" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="AlbumsWithMostSongsTemplate">
+            <Border BorderThickness="2" BorderBrush="Black">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Label Content="{Binding Album.AlbumName}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Background="#C9D2C6" />
+                    <Label Content="{Binding SongCount}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Background="#C9D2C6" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="GetArtistsByGenreTemplate">
+            <Border BorderThickness="2" BorderBrush="Black">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Label Content="{Binding Artist.StageName}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Background="#C9D2C6" />
+                    <Label Content="{Binding Artist.DateOfBirth}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Background="#C9D2C6" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="GetSongsByLabelTemplate">
+            <Border BorderThickness="2" BorderBrush="Black">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Label Content="{Binding SongName}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Background="#C9D2C6" />
+                    <Label Content="{Binding Artist.StageName}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Background="#C9D2C6" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="GetLabelsWithMostAlbumsTemplate">
+            <Border BorderThickness="2" BorderBrush="Black">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Label Content="{Binding Label.LabelName}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Background="#C9D2C6" />
+                    <Label Content="{Binding AlbumCount}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Background="#C9D2C6" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label Content="Methods:" Background="#517970" Padding="10" FontWeight="Bold" FontSize="14" DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="0,0,1,0"/>
+            <Button Content="Artist with most songs at label" Command="{Binding GetArtistWithMostSongsAtLabelCommand}" Margin="10" Padding="10" Background="#2F3E46" Foreground="#C9D2C6" FontSize="14"/>
+            <Button Content="Albums with most songs" Command="{Binding GetAlbumsWithMostSongsCommand}" Margin="10" Padding="10" Background="#2F3E46" Foreground="#C9D2C6" FontSize="14"/>
+            <Button Content="Artists by genre" Command="{Binding GetArtistsByGenreCommand}" Margin="10" Padding="10" Background="#2F3E46" Foreground="#C9D2C6" FontSize="14"/>
+            <Button Content="Songs by label" Command="{Binding GetSongsByLabelCommand}" Margin="10" Padding="10" Background="#2F3E46" Foreground="#C9D2C6" FontSize="14"/>
+            <Button Content="Labels with most albums" Command="{Binding GetLabelsWithMostAlbumsCommand}" Margin="10" Padding="10" Background="#2F3E46" Foreground="#C9D2C6" FontSize="14"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="1">
+                <Label Grid.Column="0" Content="Input:" Background="#517970" Padding="10" FontWeight="DemiBold" FontSize="14"/>
+                <TextBox Grid.Column="0" Text="{Binding TB_input}" Padding="10" Margin="0,0,0,0" />
+            </StackPanel>
+            <DockPanel>
+                <Label Content="Output:" Background="#517970" Padding="10" FontWeight="Bold" FontSize="14" DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="0,0,1,0"/>
+                <ListBox ItemsSource="{Binding SelectedObservableCollection}" Height="295" DockPanel.Dock="Bottom" BorderBrush="Black" BorderThickness="0,0,1,0" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ListBox.ItemTemplateSelector>
+                        <local:MyItemTemplateSelector>
+                            <local:MyItemTemplateSelector.ArtistWithMostSongsTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2" BorderBrush="Black">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*" />
+                                                <RowDefinition Height="1*" />
+                                            </Grid.RowDefinitions>
+                                            <Label Content="{Binding Artist.StageName}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Background="#C9D2C6" />
+                                            <Label Content="{Binding SongCount}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Background="#C9D2C6" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </local:MyItemTemplateSelector.ArtistWithMostSongsTemplate>
+
+                            <local:MyItemTemplateSelector.AlbumsWithMostSongsTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2" BorderBrush="Black">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*" />
+                                                <RowDefinition Height="1*" />
+                                            </Grid.RowDefinitions>
+                                            <Label Content="{Binding Album.AlbumName}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Background="#C9D2C6" />
+                                            <Label Content="{Binding SongCount}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Background="#C9D2C6" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </local:MyItemTemplateSelector.AlbumsWithMostSongsTemplate>
+                            <local:MyItemTemplateSelector.GetArtistsByGenreTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2" BorderBrush="Black">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*" />
+                                                <RowDefinition Height="1*" />
+                                            </Grid.RowDefinitions>
+                                            <Label Content="{Binding StageName}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Background="#C9D2C6" />
+                                            <Label Content="{Binding DateOfBirth}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Background="#C9D2C6" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </local:MyItemTemplateSelector.GetArtistsByGenreTemplate>
+                            <local:MyItemTemplateSelector.GetSongsByLabelTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2" BorderBrush="Black">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*" />
+                                                <RowDefinition Height="1*" />
+                                            </Grid.RowDefinitions>
+                                            <Label Content="{Binding SongName}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Background="#C9D2C6" />
+                                            <Label Content="{Binding Artist.StageName}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Background="#C9D2C6" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </local:MyItemTemplateSelector.GetSongsByLabelTemplate>
+                            <local:MyItemTemplateSelector.GetLabelsWithMostAlbumsTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2" BorderBrush="Black">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*" />
+                                                <RowDefinition Height="1*" />
+                                            </Grid.RowDefinitions>
+                                            <Label Content="{Binding Label.LabelName}" Grid.Row="0" Grid.Column="0" Margin="5" Padding="5" Background="#C9D2C6" />
+                                            <Label Content="{Binding AlbumCount}" Grid.Row="0" Grid.Column="1" Margin="5" Padding="5" Background="#C9D2C6" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </local:MyItemTemplateSelector.GetLabelsWithMostAlbumsTemplate>
+
+                            <!-- Add more template definitions for other types as needed -->
+
+                        </local:MyItemTemplateSelector>
+                    </ListBox.ItemTemplateSelector>
+                </ListBox>
+            </DockPanel>
+        </StackPanel>
     </Grid>
 </Window>
