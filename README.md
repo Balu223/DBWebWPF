@@ -1,5 +1,6 @@
 # BYLLQ0_HFT_2022232
 A university project that focuses on the layered object-oriented design.
+Note: This ReadMe is not up-to-date, will be adding the new features to it soon.
 ## Features
  * In-memory database that stores music records. The database consists of:
    * Labels
