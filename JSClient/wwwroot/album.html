@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Album UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="Menu">
+        <button type="button" onclick="linker('menu')">Go to menu</button>
+    </div>
+    <h1> Album Catalog </h1>
+    <div id="formdiv">
+        <label>Album name</label>
+        <input type="text" id="AlbumName" />
+        <br />
+        <label>Release date</label>
+        <input type="date" id="ReleaseDate" />
+        <button type="button" onclick="create()">Add album</button>
+
+    </div>
+    <div id="updateformdiv">
+        <label>Album name</label>
+        <input type="text" id="AlbumNametoupdate" />
+        <br />
+        <label>Release date</label>
+        <input type="date" id="ReleaseDatetoupdate" />
+        <button type="button" onclick="update()">Update album</button>
+
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date of birth</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+    <script src="album.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
