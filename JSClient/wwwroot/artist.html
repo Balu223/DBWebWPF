@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Artist UI</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <div id="Menu">
+        <button type="button" onclick="linker('menu')">Go to menu</button>
+    </div>
+    <h1> Artist Catalog </h1>
+    <div id="formdiv">
+        <label>Artist's real name:</label>
+        <input type="text" id="RealName" />
+        <br />
+        <label>Artist's stagename:</label>
+        <input type="text" id="StageName" />
+        <br />
+        <label>Artist's date of birth:</label>
+        <input type="date" id="DateOfBirth" />
+        <button type="button" onclick="create()">Add artist</button>
+
+    </div>
+    <div id="updateformdiv">
+        <label>Artist's real name:</label>
+        <input type="text" id="RealNametoupdate" />
+        <br />
+        <label>Artist's stagename:</label>
+        <input type="text" id="StageNametoupdate" />
+        <br />
+        <label>Artist's date of birth:</label>
+        <input type="date" id="DateOfBirthtoupdate" />
+        <button type="button" onclick="update()">Update artist</button>
+
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Real name</th>
+                <th>Stage name</th>
+                <th>Date of birth</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+    <script src="artist.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
