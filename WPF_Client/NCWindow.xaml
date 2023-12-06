@@ -210,9 +210,6 @@
                                     </Border>
                                 </DataTemplate>
                             </local:MyItemTemplateSelector.GetLabelsWithMostAlbumsTemplate>
-
-                            <!-- Add more template definitions for other types as needed -->
-
                         </local:MyItemTemplateSelector>
                     </ListBox.ItemTemplateSelector>
                 </ListBox>

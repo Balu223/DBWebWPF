@@ -150,7 +150,6 @@ namespace WPF_Client
                 rest = MainWindowViewModel.rest;
                 GetArtistWithMostSongsAtLabelCommand = new RelayCommand(() =>
                 {
-                    //SelectedCollection = 1;
                     int id = int.Parse(TB_input);
                     var a = rest.Get<NonCrud.ArtistInfo>($"http://localhost:5124/NC/GetArtistWithMostSongsAtLabel/{id}");
                     ArtistWithMostSongsAtLabel = new ObservableCollection<NonCrud.ArtistInfo>(a);
@@ -158,8 +157,6 @@ namespace WPF_Client
                 });
                 GetAlbumsWithMostSongsCommand = new RelayCommand(() =>
                 {
-                    // SelectedCollection = 2;
-
                     var a = rest.Get<NonCrud.AlbumInfo>($"http://localhost:5124/NC/GetAlbumsWithMostSongs/");
                     AlbumsWithMostSongs = new ObservableCollection<NonCrud.AlbumInfo>(a);
                     SelectedMethod = "AlbumsWithMostSongs";
@@ -168,7 +165,6 @@ namespace WPF_Client
                 });
                 GetArtistsByGenreCommand = new RelayCommand(() =>
                 {
-                   // SelectedCollection = 3;
                     string genre = TB_input;
                     var a = rest.Get<Artist>($"http://localhost:5124/NC/GetArtistsByGenre/{genre}/");
                     GetArtistsByGenre = new ObservableCollection<Artist>(a);
@@ -176,7 +172,6 @@ namespace WPF_Client
                 });
                 GetSongsByLabelCommand = new RelayCommand(() =>
                 {
-                   // SelectedCollection = 4;
                     int id = int.Parse(TB_input);
                     var a = rest.Get<Song>($"NC/GetSongsByLabel/{id}");
                     GetSongsByLabel = new ObservableCollection<Song>(a);
@@ -185,7 +180,6 @@ namespace WPF_Client
                 
                 GetLabelsWithMostAlbumsCommand = new RelayCommand(() =>
                 {
-                   // SelectedCollection = 5;
                     var a = rest.Get<NonCrud.LabelInfo>($"http://localhost:5124/NC/GetLabelsWithMostAlbums/");
                     GetLabelsWithMostAlbums = new ObservableCollection<NonCrud.LabelInfo>(a);
                     SelectedMethod = "GetLabelsWithMostAlbums";
