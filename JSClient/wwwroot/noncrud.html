@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>NonCRUD UI</title>
+</head>
+<body>
+    <h1>NonCRUDs</h1>
+    <div id="Menu">
+        <button type="button" onclick="linker('menu')">Go to menu</button>
+    </div>
+    <div>
+        <p>Artist with most songs at label</p>
+        <div id="formdiv">
+            <label>Label id:</label>
+            <input type="text" id="LabelId" />
+            <button type="button" onclick="artistwithmostsongsatlabelfunc()">Show</button>
+
+        </div>
+        <table>
+            <thead>
+                <!--<tr>
+                    <td>Division Average Age</td>
+                </tr>-->
+            </thead>
+            <tbody id="artistWithMostSongsAtLabel">
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <p>Albums with most songs</p>
+        <table>
+            <thead>
+            </thead>
+            <tbody id="albumsWithMostSongs">
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <p>Artists by genre</p>
+        <div id="formdiv">
+            <label>Genre:</label>
+            <input type="text" id="Genre" />
+            <button type="button" onclick="artistsbygenrefunc()">Show</button>
+
+        </div>
+        <table>
+            <thead>
+                <!--<tr>
+                    <td>Division Average Age</td>
+                </tr>-->
+            </thead>
+            <tbody id="artistsByGenre">
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <p>Songs by label</p>
+        <div id="formdiv">
+            <label>Label id:</label>
+            <input type="text" id="LabelIdforSongs" />
+            <button type="button" onclick="songsbylabelfunc()">Show</button>
+
+        </div>
+        <table>
+            <thead>
+                <!--<tr>
+                    <td>Division Average Age</td>
+                </tr>-->
+            </thead>
+            <tbody id="songsByLabel">
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <p>Labels with most albums</p>
+        <table>
+            <thead>
+            </thead>
+            <tbody id="labelsWithMostAlbums">
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+    <script src="noncrud.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
