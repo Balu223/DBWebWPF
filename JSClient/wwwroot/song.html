@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Song UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="Menu">
+        <button type="button" onclick="linker('menu')">Go to menu</button>
+    </div>
+    <h1> Song Catalog </h1>
+    <div id="formdiv">
+        <label>Song name</label>
+        <input type="text" id="SongName" />
+        <br />
+        <label>Genre</label>
+        <input type="text" id="Genre" />
+        <button type="button" onclick="create()">Add song</button>
+
+    </div>
+    <div id="updateformdiv">
+        <label>Song name</label>
+        <input type="text" id="SongNametoupdate" />
+        <br />
+        <label>Genre</label>
+        <input type="text" id="Genretoupdate" />
+        <button type="button" onclick="update()">Update song</button>
+
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+    <script src="song.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
