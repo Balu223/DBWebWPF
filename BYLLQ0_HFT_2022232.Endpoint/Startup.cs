@@ -58,6 +58,13 @@ namespace BYLLQ0_HFT_2022232.Endpoint
                 var response = new { Msg = exception.Message };
                 await context.Response.WriteAsJsonAsync(response);
             }));
+
+            app.UseCors(x => x
+            .AllowCredentials()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithOrigins("http://localhost:22858"));
+
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
