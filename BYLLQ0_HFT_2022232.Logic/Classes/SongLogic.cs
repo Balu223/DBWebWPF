@@ -19,10 +19,6 @@ namespace BYLLQ0_HFT_2022232.Logic
 
         public void Create(Song item)
         {
-            if (item.ArtistId == null)
-            {
-                throw new ArgumentException("Song has no artist");
-            }
             if (item.SongName == "")
             {
                 throw new ArgumentException("Song name too short");
