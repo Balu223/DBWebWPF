@@ -7,11 +7,10 @@ A university coursework that is an all-in-one project that fully showcases a lay
    * Artists 
    * Albums 
    * Songs
-     
-   * A custom-built website,
-   * a simple console menu, 
-   * and a WPF application,
- that all serve the same purpose, to give a GUI for the user to be able to interact with the database.
+  
+* A custom-built website,
+* a simple console menu, 
+* and a WPF application, that all serve the same purpose, to give a GUI for the user to be able to interact with the database.
 
  * CRUD (Create, Read, Update, Delete) and non-CRUD methods
  * Unit tests that cover these methods.
