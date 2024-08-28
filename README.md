@@ -1,15 +1,17 @@
-# BYLLQ0_HFT_2022232
-A university project that focuses on the layered object-oriented design.
+# DBWebWPF
+A university coursework that is an all-in-one project that fully showcases a layered, OOP application.
 
-Note: This ReadMe is not up-to-date, will be adding the new features to it soon.
 ## Features
  * In-memory database that stores music records. The database consists of:
    * Labels
    * Artists 
    * Albums 
    * Songs
- * A Swagger-built website
- * A simple console menu
+     
+ * A custom-built website,
+ * a simple console menu,     That all serve the same purpose, to give a GUI for the user to be able to interact with the database.
+ * and a WPF application,
+   
  * CRUD (Create, Read, Update, Delete) and non-CRUD methods
  * Unit tests that cover these methods.
 ## Structure
